@@ -1,17 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Music tastebreaker</h1>
+    <hr>
+    <Header
+    v-bind:musicServices="musicServices"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from '@/components/Header'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      musicServices: [
+        {id: 1, name: "Youtube music", url: "ex1.com"},
+        {id: 2, name: "Spotify", url: "http://127.0.0.1:5000/api/spotify/url"},
+        {id: 3, name: "Deezer", url: "ex3.com"},
+      ]
+    }
+  },
   components: {
-    HelloWorld
+    Header
   }
 }
 </script>
@@ -23,6 +35,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>
