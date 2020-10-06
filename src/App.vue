@@ -3,24 +3,26 @@
     <h1>Music tastebreaker</h1>
     <hr>
     <Header
-    v-bind:musicServices="musicServices"
+    v-bind:musicServices="oauthClients"
     />
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
+import axios from 'axios'
 
 export default {
   name: 'App',
   data() {
     return {
-      musicServices: [
-        {id: 1, name: "Youtube music", url: "ex1.com"},
-        {id: 2, name: "Spotify", url: "http://127.0.0.1:5000/api/spotify/url"},
-        {id: 3, name: "Deezer", url: "ex3.com"},
-      ]
+      oauthClients: null
     }
+  },
+  mounted() {
+    axios
+        .get('http://127.0.0.1:5000/api/oauth_clients')
+        .then(response => (this.oauthClients = response.data.info));
   },
   components: {
     Header
